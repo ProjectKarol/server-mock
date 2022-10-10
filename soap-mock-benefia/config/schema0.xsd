@@ -1,0 +1,316 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+<xs:import schemaLocation="http://wstest3.benefia.pl/ws_pakiety_new/PackagesService.svc?xsd=xsd1" namespace="http://microsoft.com/wsdl/types/"/>
+<xs:import schemaLocation="http://wstest3.benefia.pl/ws_pakiety_new/PackagesService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Benefia.CSOU_WS.Common.Models"/>
+<xs:element name="Calculate">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="1" name="input">
+<xs:complexType mixed="true">
+<xs:sequence>
+<xs:any/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element minOccurs="0" maxOccurs="1" name="additionalProcessData" type="tns:AdditionalSalesProcessData"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="AdditionalSalesProcessData">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="1" name="ConsentResults" type="tns:ArrayOfConsentResult"/>
+<xs:element minOccurs="0" maxOccurs="1" name="MultiofferData" type="tns:MultiofferData"/>
+<xs:element minOccurs="1" maxOccurs="1" name="OnlyDataUpdate" type="xs:boolean"/>
+<xs:element minOccurs="0" maxOccurs="1" name="ConsentVersion" type="xs:string"/>
+<xs:element minOccurs="1" maxOccurs="1" name="IsEpolicy" type="xs:boolean"/>
+<xs:element minOccurs="0" maxOccurs="1" name="IpAddress" type="xs:string"/>
+<xs:element minOccurs="0" maxOccurs="1" name="UserAgent" type="xs:string"/>
+<xs:element minOccurs="0" maxOccurs="1" name="RequestorType" type="xs:string"/>
+<xs:element minOccurs="0" maxOccurs="1" name="Port" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ArrayOfConsentResult">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="ConsentResult" nillable="true" type="tns:ConsentResult"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ConsentResult">
+<xs:sequence>
+<xs:element minOccurs="1" maxOccurs="1" name="ConsentId" type="xs:int"/>
+<xs:element minOccurs="0" maxOccurs="1" name="Agreed" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="MultiofferData">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="1" name="FlowId" type="xs:string"/>
+<xs:element minOccurs="0" maxOccurs="1" name="SelectedVariants" type="tns:ArrayOfSelectedVariant"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ArrayOfSelectedVariant">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="SelectedVariant" nillable="true" type="tns:SelectedVariant"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="SelectedVariant">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="1" name="RiderCode" type="xs:string"/>
+<xs:element minOccurs="0" maxOccurs="1" name="VariantCode" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="CalculateResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="1" name="CalculateResult">
+<xs:complexType mixed="true">
+<xs:sequence>
+<xs:any/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="CalculateApplication">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="1" name="input">
+<xs:complexType mixed="true">
+<xs:sequence>
+<xs:any/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element xmlns:q1="http://microsoft.com/wsdl/types/" minOccurs="1" maxOccurs="1" name="calculationId" nillable="true" type="q1:guid"/>
+<xs:element minOccurs="0" maxOccurs="1" name="applicationOvertNumber" type="xs:string"/>
+<xs:element minOccurs="0" maxOccurs="1" name="additionalProcessData" type="tns:AdditionalSalesProcessData"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="CalculateApplicationResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="1" name="CalculateApplicationResult">
+<xs:complexType mixed="true">
+<xs:sequence>
+<xs:any/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="FinalizeApplication">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="1" name="applicationOvertNumber" type="xs:string"/>
+<xs:element minOccurs="0" maxOccurs="1" name="statementFile" type="xs:string"/>
+<xs:element minOccurs="0" maxOccurs="1" name="statementFileName" type="xs:string"/>
+<xs:element minOccurs="0" maxOccurs="1" name="additionalProcessData" type="tns:AdditionalSalesProcessData"/>
+<xs:element minOccurs="0" maxOccurs="1" name="nrWariantu" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="FinalizeApplicationResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="1" name="FinalizeApplicationResult">
+<xs:complexType mixed="true">
+<xs:sequence>
+<xs:any/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="SignAppliacationPreparePolicy">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="1" name="applicationOvertNumber" type="xs:string"/>
+<xs:element minOccurs="0" maxOccurs="1" name="additionalProcessData" type="tns:AdditionalSalesProcessData"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="SignAppliacationPreparePolicyResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="1" name="SignAppliacationPreparePolicyResult">
+<xs:complexType mixed="true">
+<xs:sequence>
+<xs:any/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="MakePayment">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="1" name="numerPolisy" type="xs:string"/>
+<xs:element minOccurs="1" maxOccurs="1" name="oplata" type="xs:decimal"/>
+<xs:element minOccurs="1" maxOccurs="1" name="dataWymagalnosciRaty" type="xs:dateTime"/>
+<xs:element minOccurs="0" maxOccurs="1" name="numerOperacjiBankowej" type="xs:string"/>
+<xs:element minOccurs="0" maxOccurs="1" name="typPlatnosci" type="xs:string"/>
+<xs:element minOccurs="0" maxOccurs="1" name="przelewNaKonto" type="xs:string"/>
+<xs:element minOccurs="0" maxOccurs="1" name="additionalProcessData" type="tns:AdditionalSalesProcessData"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="MakePaymentResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="1" name="MakePaymentResult">
+<xs:complexType mixed="true">
+<xs:sequence>
+<xs:any/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="PrintCalculation">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q2="http://microsoft.com/wsdl/types/" minOccurs="1" maxOccurs="1" name="calculationId" type="q2:guid"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="PrintCalculationResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="1" name="PrintCalculationResult">
+<xs:complexType mixed="true">
+<xs:sequence>
+<xs:any/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="PrintApplication">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="1" name="applicationOvertNumber" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="PrintApplicationResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="1" name="PrintApplicationResult">
+<xs:complexType mixed="true">
+<xs:sequence>
+<xs:any/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="PrintPolicy">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="1" name="policyNumber" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="PrintPolicyResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="1" name="PrintPolicyResult">
+<xs:complexType mixed="true">
+<xs:sequence>
+<xs:any/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="MakeInstallmentPayment">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="1" name="policyNumber" type="xs:string"/>
+<xs:element minOccurs="1" maxOccurs="1" name="installmentNumber" type="xs:int"/>
+<xs:element minOccurs="1" maxOccurs="1" name="dueDate" type="xs:dateTime"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="MakeInstallmentPaymentResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="1" name="MakeInstallmentPaymentResult">
+<xs:complexType mixed="true">
+<xs:sequence>
+<xs:any/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="GetSalesProcessConfiguration">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="productId" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="GetSalesProcessConfigurationResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Benefia.CSOU_WS.Common.Models" minOccurs="0" name="GetSalesProcessConfigurationResult" nillable="true" type="q3:SalesProcessConfiguration"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="CalculateMultioffer">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="1" name="input">
+<xs:complexType mixed="true">
+<xs:sequence>
+<xs:any/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element minOccurs="0" maxOccurs="1" name="additionalProcessData" type="tns:AdditionalSalesProcessData"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="CalculateMultiofferResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="1" name="CalculateMultiofferResult">
+<xs:complexType mixed="true">
+<xs:sequence>
+<xs:any/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="GetApplicationStatus">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="1" name="applicationNumber" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="GetApplicationStatusResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="1" name="GetApplicationStatusResult">
+<xs:complexType mixed="true">
+<xs:sequence>
+<xs:any/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<style id="stylebot-css-*">#limit-extension-content-timer{ bottom: 20px !important; top: auto !important; }</style>
+</xs:schema>

@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="PackagesService" targetNamespace="http://tempuri.org/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+                  xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://tempuri.org/"
+                  xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+                  xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex"
+                  xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy"
+                  xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+                  xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract"
+                  xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+                  xmlns:wsa10="http://www.w3.org/2005/08/addressing"
+                  xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+    <wsp:Policy wsu:Id="BasicHttpEndpoint_policy">
+        <wsp:ExactlyOne>
+            <wsp:All>
+                <http:BasicAuthentication xmlns:http="http://schemas.microsoft.com/ws/06/2004/policy/http"/>
+            </wsp:All>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
+    <wsp:Policy wsu:Id="BasicHttpsEndpoint_policy">
+        <wsp:ExactlyOne>
+            <wsp:All>
+                <http:BasicAuthentication xmlns:http="http://schemas.microsoft.com/ws/06/2004/policy/http"/>
+                <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+                    <wsp:Policy>
+                        <sp:TransportToken>
+                            <wsp:Policy>
+                                <sp:HttpsToken RequireClientCertificate="false"/>
+                            </wsp:Policy>
+                        </sp:TransportToken>
+                        <sp:AlgorithmSuite>
+                            <wsp:Policy>
+                                <sp:Basic256/>
+                            </wsp:Policy>
+                        </sp:AlgorithmSuite>
+                        <sp:Layout>
+                            <wsp:Policy>
+                                <sp:Strict/>
+                            </wsp:Policy>
+                        </sp:Layout>
+                    </wsp:Policy>
+                </sp:TransportBinding>
+            </wsp:All>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://tempuri.org/Imports">
+            <xsd:import schemaLocation="schema0.xsd"
+                        namespace="http://tempuri.org/"/>
+            <xsd:import schemaLocation="schema1.xsd"
+                        namespace="http://microsoft.com/wsdl/types/"/>
+            <xsd:import schemaLocation="schema2.xsd"
+                        namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+            <xsd:import schemaLocation="schema3.xsd"
+                        namespace="http://schemas.datacontract.org/2004/07/Benefia.CSOU_WS.Common.Models"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="IPackagesService_Calculate_InputMessage">
+        <wsdl:part name="parameters" element="tns:Calculate"/>
+    </wsdl:message>
+    <wsdl:message name="IPackagesService_Calculate_OutputMessage">
+        <wsdl:part name="parameters" element="tns:CalculateResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IPackagesService_CalculateApplication_InputMessage">
+        <wsdl:part name="parameters" element="tns:CalculateApplication"/>
+    </wsdl:message>
+    <wsdl:message name="IPackagesService_CalculateApplication_OutputMessage">
+        <wsdl:part name="parameters" element="tns:CalculateApplicationResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IPackagesService_FinalizeApplication_InputMessage">
+        <wsdl:part name="parameters" element="tns:FinalizeApplication"/>
+    </wsdl:message>
+    <wsdl:message name="IPackagesService_FinalizeApplication_OutputMessage">
+        <wsdl:part name="parameters" element="tns:FinalizeApplicationResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IPackagesService_SignAppliacationPreparePolicy_InputMessage">
+        <wsdl:part name="parameters" element="tns:SignAppliacationPreparePolicy"/>
+    </wsdl:message>
+    <wsdl:message name="IPackagesService_SignAppliacationPreparePolicy_OutputMessage">
+        <wsdl:part name="parameters" element="tns:SignAppliacationPreparePolicyResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IPackagesService_MakePayment_InputMessage">
+        <wsdl:part name="parameters" element="tns:MakePayment"/>
+    </wsdl:message>
+    <wsdl:message name="IPackagesService_MakePayment_OutputMessage">
+        <wsdl:part name="parameters" element="tns:MakePaymentResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IPackagesService_PrintCalculation_InputMessage">
+        <wsdl:part name="parameters" element="tns:PrintCalculation"/>
+    </wsdl:message>
+    <wsdl:message name="IPackagesService_PrintCalculation_OutputMessage">
+        <wsdl:part name="parameters" element="tns:PrintCalculationResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IPackagesService_PrintApplication_InputMessage">
+        <wsdl:part name="parameters" element="tns:PrintApplication"/>
+    </wsdl:message>
+    <wsdl:message name="IPackagesService_PrintApplication_OutputMessage">
+        <wsdl:part name="parameters" element="tns:PrintApplicationResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IPackagesService_PrintPolicy_InputMessage">
+        <wsdl:part name="parameters" element="tns:PrintPolicy"/>
+    </wsdl:message>
+    <wsdl:message name="IPackagesService_PrintPolicy_OutputMessage">
+        <wsdl:part name="parameters" element="tns:PrintPolicyResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IPackagesService_MakeInstallmentPayment_InputMessage">
+        <wsdl:part name="parameters" element="tns:MakeInstallmentPayment"/>
+    </wsdl:message>
+    <wsdl:message name="IPackagesService_MakeInstallmentPayment_OutputMessage">
+        <wsdl:part name="parameters" element="tns:MakeInstallmentPaymentResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IPackagesService_GetSalesProcessConfiguration_InputMessage">
+        <wsdl:part name="parameters" element="tns:GetSalesProcessConfiguration"/>
+    </wsdl:message>
+    <wsdl:message name="IPackagesService_GetSalesProcessConfiguration_OutputMessage">
+        <wsdl:part name="parameters" element="tns:GetSalesProcessConfigurationResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IPackagesService_CalculateMultioffer_InputMessage">
+        <wsdl:part name="parameters" element="tns:CalculateMultioffer"/>
+    </wsdl:message>
+    <wsdl:message name="IPackagesService_CalculateMultioffer_OutputMessage">
+        <wsdl:part name="parameters" element="tns:CalculateMultiofferResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IPackagesService_GetApplicationStatus_InputMessage">
+        <wsdl:part name="parameters" element="tns:GetApplicationStatus"/>
+    </wsdl:message>
+    <wsdl:message name="IPackagesService_GetApplicationStatus_OutputMessage">
+        <wsdl:part name="parameters" element="tns:GetApplicationStatusResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="IPackagesService">
+        <wsdl:operation name="Calculate">
+            <wsdl:input wsaw:Action="http://tempuri.org/IPackagesService/Calculate"
+                        message="tns:IPackagesService_Calculate_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IPackagesService/CalculateResponse"
+                         message="tns:IPackagesService_Calculate_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="CalculateApplication">
+            <wsdl:input wsaw:Action="http://tempuri.org/IPackagesService/CalculateApplication"
+                        message="tns:IPackagesService_CalculateApplication_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IPackagesService/CalculateApplicationResponse"
+                         message="tns:IPackagesService_CalculateApplication_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="FinalizeApplication">
+            <wsdl:input wsaw:Action="http://tempuri.org/IPackagesService/FinalizeApplication"
+                        message="tns:IPackagesService_FinalizeApplication_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IPackagesService/FinalizeApplicationResponse"
+                         message="tns:IPackagesService_FinalizeApplication_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="SignAppliacationPreparePolicy">
+            <wsdl:input wsaw:Action="http://tempuri.org/IPackagesService/SignAppliacationPreparePolicy"
+                        message="tns:IPackagesService_SignAppliacationPreparePolicy_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IPackagesService/SignAppliacationPreparePolicyResponse"
+                         message="tns:IPackagesService_SignAppliacationPreparePolicy_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="MakePayment">
+            <wsdl:input wsaw:Action="http://tempuri.org/IPackagesService/MakePayment"
+                        message="tns:IPackagesService_MakePayment_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IPackagesService/MakePaymentResponse"
+                         message="tns:IPackagesService_MakePayment_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="PrintCalculation">
+            <wsdl:input wsaw:Action="http://tempuri.org/IPackagesService/PrintCalculation"
+                        message="tns:IPackagesService_PrintCalculation_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IPackagesService/PrintCalculationResponse"
+                         message="tns:IPackagesService_PrintCalculation_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="PrintApplication">
+            <wsdl:input wsaw:Action="http://tempuri.org/IPackagesService/PrintApplication"
+                        message="tns:IPackagesService_PrintApplication_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IPackagesService/PrintApplicationResponse"
+                         message="tns:IPackagesService_PrintApplication_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="PrintPolicy">
+            <wsdl:input wsaw:Action="http://tempuri.org/IPackagesService/PrintPolicy"
+                        message="tns:IPackagesService_PrintPolicy_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IPackagesService/PrintPolicyResponse"
+                         message="tns:IPackagesService_PrintPolicy_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="MakeInstallmentPayment">
+            <wsdl:input wsaw:Action="http://tempuri.org/IPackagesService/MakeInstallmentPayment"
+                        message="tns:IPackagesService_MakeInstallmentPayment_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IPackagesService/MakeInstallmentPaymentResponse"
+                         message="tns:IPackagesService_MakeInstallmentPayment_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetSalesProcessConfiguration">
+            <wsdl:input wsaw:Action="http://tempuri.org/IPackagesService/GetSalesProcessConfiguration"
+                        message="tns:IPackagesService_GetSalesProcessConfiguration_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IPackagesService/GetSalesProcessConfigurationResponse"
+                         message="tns:IPackagesService_GetSalesProcessConfiguration_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="CalculateMultioffer">
+            <wsdl:input wsaw:Action="http://tempuri.org/IPackagesService/CalculateMultioffer"
+                        message="tns:IPackagesService_CalculateMultioffer_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IPackagesService/CalculateMultiofferResponse"
+                         message="tns:IPackagesService_CalculateMultioffer_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetApplicationStatus">
+            <wsdl:input wsaw:Action="http://tempuri.org/IPackagesService/GetApplicationStatus"
+                        message="tns:IPackagesService_GetApplicationStatus_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IPackagesService/GetApplicationStatusResponse"
+                         message="tns:IPackagesService_GetApplicationStatus_OutputMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="BasicHttpEndpoint" type="tns:IPackagesService">
+        <wsp:PolicyReference URI="#BasicHttpEndpoint_policy"/>
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="Calculate">
+            <soap:operation soapAction="http://tempuri.org/IPackagesService/Calculate" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CalculateApplication">
+            <soap:operation soapAction="http://tempuri.org/IPackagesService/CalculateApplication" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="FinalizeApplication">
+            <soap:operation soapAction="http://tempuri.org/IPackagesService/FinalizeApplication" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SignAppliacationPreparePolicy">
+            <soap:operation soapAction="http://tempuri.org/IPackagesService/SignAppliacationPreparePolicy"
+                            style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="MakePayment">
+            <soap:operation soapAction="http://tempuri.org/IPackagesService/MakePayment" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="PrintCalculation">
+            <soap:operation soapAction="http://tempuri.org/IPackagesService/PrintCalculation" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="PrintApplication">
+            <soap:operation soapAction="http://tempuri.org/IPackagesService/PrintApplication" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="PrintPolicy">
+            <soap:operation soapAction="http://tempuri.org/IPackagesService/PrintPolicy" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="MakeInstallmentPayment">
+            <soap:operation soapAction="http://tempuri.org/IPackagesService/MakeInstallmentPayment" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetSalesProcessConfiguration">
+            <soap:operation soapAction="http://tempuri.org/IPackagesService/GetSalesProcessConfiguration"
+                            style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CalculateMultioffer">
+            <soap:operation soapAction="http://tempuri.org/IPackagesService/CalculateMultioffer" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetApplicationStatus">
+            <soap:operation soapAction="http://tempuri.org/IPackagesService/GetApplicationStatus" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="BasicHttpsEndpoint" type="tns:IPackagesService">
+        <wsp:PolicyReference URI="#BasicHttpsEndpoint_policy"/>
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="Calculate">
+            <soap:operation soapAction="http://tempuri.org/IPackagesService/Calculate" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CalculateApplication">
+            <soap:operation soapAction="http://tempuri.org/IPackagesService/CalculateApplication" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="FinalizeApplication">
+            <soap:operation soapAction="http://tempuri.org/IPackagesService/FinalizeApplication" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SignAppliacationPreparePolicy">
+            <soap:operation soapAction="http://tempuri.org/IPackagesService/SignAppliacationPreparePolicy"
+                            style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="MakePayment">
+            <soap:operation soapAction="http://tempuri.org/IPackagesService/MakePayment" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="PrintCalculation">
+            <soap:operation soapAction="http://tempuri.org/IPackagesService/PrintCalculation" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="PrintApplication">
+            <soap:operation soapAction="http://tempuri.org/IPackagesService/PrintApplication" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="PrintPolicy">
+            <soap:operation soapAction="http://tempuri.org/IPackagesService/PrintPolicy" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="MakeInstallmentPayment">
+            <soap:operation soapAction="http://tempuri.org/IPackagesService/MakeInstallmentPayment" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetSalesProcessConfiguration">
+            <soap:operation soapAction="http://tempuri.org/IPackagesService/GetSalesProcessConfiguration"
+                            style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CalculateMultioffer">
+            <soap:operation soapAction="http://tempuri.org/IPackagesService/CalculateMultioffer" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetApplicationStatus">
+            <soap:operation soapAction="http://tempuri.org/IPackagesService/GetApplicationStatus" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="PackagesService">
+        <wsdl:port name="BasicHttpEndpoint" binding="tns:BasicHttpEndpoint">
+            <soap:address location="http://wstest3.benefia.pl/ws_pakiety_new/PackagesService.svc"/>
+        </wsdl:port>
+        <wsdl:port name="BasicHttpsEndpoint" binding="tns:BasicHttpsEndpoint">
+            <soap:address location="https://wstest3.benefia.pl/ws_pakiety_new/PackagesService.svc"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

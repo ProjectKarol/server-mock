@@ -1,0 +1,4 @@
+# exsample-config.yaml
+---
+plugin: soap
+wsdlFile: exsample.wsdl

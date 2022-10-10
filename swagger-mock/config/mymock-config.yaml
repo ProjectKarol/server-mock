@@ -1,0 +1,4 @@
+# petstore-config.yaml
+---
+plugin: openapi
+specFile: example.yaml

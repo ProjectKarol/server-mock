@@ -1,0 +1,66 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/Benefia.CSOU_WS.Common.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Benefia.CSOU_WS.Common.Models">
+<xs:import schemaLocation="http://wstest3.benefia.pl/ws_pakiety_new/PackagesService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+<xs:complexType name="SalesProcessConfiguration">
+<xs:sequence>
+<xs:element minOccurs="0" name="Consents" nillable="true" type="tns:ArrayOfConsent"/>
+<xs:element minOccurs="0" name="ConsentsCount" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="SalesProcessConfiguration" nillable="true" type="tns:SalesProcessConfiguration"/>
+<xs:complexType name="ArrayOfConsent">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="Consent" nillable="true" type="tns:Consent"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfConsent" nillable="true" type="tns:ArrayOfConsent"/>
+<xs:complexType name="Consent">
+<xs:sequence>
+<xs:element minOccurs="0" name="CollectingStage" type="tns:ConsentCollectingStage"/>
+<xs:element minOccurs="0" name="Content" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Id" type="xs:int"/>
+<xs:element minOccurs="0" name="IsRequired" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="Consent" nillable="true" type="tns:Consent"/>
+<xs:simpleType name="ConsentCollectingStage">
+<xs:restriction base="xs:string">
+<xs:enumeration value="Calculate">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="CalculateApplication">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="FinalizeApplication">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="SignAppliacationPreparePolicy">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="MakePayment">
+<xs:annotation>
+<xs:appinfo>
+<EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+</xs:appinfo>
+</xs:annotation>
+</xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+<xs:element name="ConsentCollectingStage" nillable="true" type="tns:ConsentCollectingStage"/>
+<style id="stylebot-css-*">#limit-extension-content-timer{ bottom: 20px !important; top: auto !important; }</style>
+</xs:schema>
